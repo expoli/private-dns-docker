@@ -69,7 +69,7 @@ services:
       - ./unbound/ssl/:/etc/unbound/ssl/
     environment:
       - DNS_DOMAIN_NAME=your_private_dns_domain_name
-      - THREADS_NUM=4
+      - THREADS_NUM=number_of_unbound_threads
     container_name: "unbound-server"
     network_mode: host
     cap_add:
