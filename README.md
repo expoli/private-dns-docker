@@ -68,7 +68,7 @@ services:
     volumes:
       - ./unbound/ssl/:/etc/unbound/ssl/
     environment:
-      - DNS_DOMAIN_NAME=dns2.expoli.tech
+      - DNS_DOMAIN_NAME=your_private_dns_domain_name
       - THREADS_NUM=4
     container_name: "unbound-server"
     network_mode: host
