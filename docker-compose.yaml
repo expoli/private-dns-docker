@@ -1,0 +1,28 @@
+version: "3"
+services:
+  dnsmasq:
+    image: tangcuyu/dnsmasq-server:latest
+    restart: always
+    ports:
+      - "53:53"
+    depends_on:
+      - "unbound"
+    volumes:
+      - ./dnsmasq.d/:/etc/dnsmasq.d/
+    network_mode: host
+    container_name: "dnsmasq-server"
+
+  unbound:
+    image: tangcuyu/unbound-server:latest
+    restart: always
+    ports:
+      - "853:853"
+    volumes:
+      - ./unbound/ssl/:/etc/unbound/ssl/
+    environment:
+      - DNS_DOMAIN_NAME=dns2.expoli.tech
+      - THREADS_NUM=4
+    container_name: "unbound-server"
+    network_mode: host
+    cap_add:
+      - SYS_ADMIN
